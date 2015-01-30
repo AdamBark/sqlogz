@@ -14,7 +14,7 @@ class ClientTask(object):
         """Connects to remove logz server"""
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.REQ)
-        self.socket.connect("tcp://{}:{}".format(self.server, self.port))
+        self.socket.connect("tcp://%s:%d" % (self.server, self.port))
 
     def close(self):
         self.socket.close()
@@ -27,5 +27,6 @@ if __name__ == "__main__":
     client = ClientTask("localhost")
     client.connect()
     print "Connected"
-    client.send_log(serializer.serialize("A string"))
+    #client.send_log(serializer.serialize("A string"))
+    client.send_log(serializer.serialize([1, 2, 3]))
     print "Sent log"

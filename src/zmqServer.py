@@ -4,11 +4,11 @@ class ServerTask(object):
     def __init__(self, port=5555):
         self.port = port
         self._stop = False
+        self.callback = None
 
-    def register_callback(callback_func):
+    def register_callback(self, callback_func):
         """Register a function to be called with received strings"""
-        # callbacks.append(callback_func)
-        pass
+        self.callback = callback_func
 
     def run(self):
         """Start the server thread"""
@@ -22,8 +22,9 @@ class ServerTask(object):
         while not self._stop:
             sockets = dict(poll.poll())
             if frontend in sockets:
-                ident, msg = frontend.recv_multipart()
+                ident, msg, data = frontend.recv_multipart()
                 print('Server received %s id %s' % (msg, ident))
+                print self.callback(data)
 
         frontend.close()
         context.term()
@@ -35,5 +36,8 @@ class ServerTask(object):
 
 # Testing
 if __name__ == '__main__':
+    import serialize
     server = ServerTask()
+    serializer = serialize.Serialize()
+    server.register_callback(lambda x: serializer.deserialize(x))
     server.run()
