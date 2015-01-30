@@ -11,4 +11,10 @@ class ClientTask(object):
 
     def connect(self):
         """Connects to remove logz server"""
-        pass
+        self.context = zmq.Context()
+        self.socket = self.context.socket(zmq.REQ)
+        self.socket.connect("tcp://{}:{}".format(self.server, self.port))
+
+    def close(self):
+        self.socket.close()
+        self.context.term()
