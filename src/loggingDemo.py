@@ -72,12 +72,6 @@ for i in range(4):
     pp.start()
     ps.append(pp)
 
-logging.warn(q1)
-logging.warn(q2)
-import sys
-sys.exit()
-
-
 p.start()
 f.start()
 
