@@ -14,6 +14,9 @@ console.setFormatter(formatter)
 # add the handler to the root logger
 logging.getLogger('').addHandler(console)
 
+import sqlogzLogHandler
+logging.getlogger('').addHandler(sqlogzLogHandler())
+
 
 import threading
 import Queue
