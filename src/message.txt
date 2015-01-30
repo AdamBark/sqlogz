@@ -1,0 +1,7 @@
+{'threadName': 'MainThread', 'name': 'root', 'thread': 139760906598144, 'created': 1422630652.387373, 'process': 29693, 'processName': 'MainProcess', 'args': (), 'module': 'loggingDemo', 'filename': 'loggingDemo.py', 'levelno': 30, 'exc_text': None, 'pathname': 'loggingDemo.py', 'lineno': 75, 'asctime': '15:10:52', 'msg': <Queue.Queue instance at 0x7f1c98b0bea8>, 'exc_info': None, 'message': '<Queue.Queue instance at 0x7f1c98b0bea8>', 'funcName': '<module>', 'relativeCreated': 97.827911376953125, 'levelname': 'WARNING', 'msecs': 387.37297058105469}
+
+
+'msg' can be an object
+or just a string
+
+'message' is the stringified message
