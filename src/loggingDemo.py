@@ -12,11 +12,10 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 # tell the handler to use this format
 console.setFormatter(formatter)
 # add the handler to the root logger
+
+from sqlogzLogHandler import SqlogHandler
 logging.getLogger('').addHandler(console)
-
-import sqlogzLogHandler
-logging.getlogger('').addHandler(sqlogzLogHandler())
-
+logging.getLogger('').addHandler(SqlogHandler('127.0.0.1', 12345))
 
 import threading
 import Queue
@@ -72,7 +71,6 @@ for i in range(4):
     pp.daemon = True
     pp.start()
     ps.append(pp)
-
 
 p.start()
 f.start()

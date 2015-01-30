@@ -5,10 +5,10 @@ class ClientTask(object):
         self.server = server
         self.port = port
 
-    def send_log(log_item):
+    def send_log(self, log_item):
         """Sends a serialized object to the connected server"""
         pass
 
-    def connect():
+    def connect(self):
         """Connects to remove logz server"""
         pass
