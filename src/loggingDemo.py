@@ -4,6 +4,17 @@ logging.basicConfig(filename='thread_demo.log',
                     format='%(asctime)s.%(msecs)03d  %(threadName)-16s %(levelname)-6s %(message)s', 
                     datefmt='%H:%M:%S')
 
+# define a Handler which writes INFO messages or higher to the sys.stderr
+console = logging.StreamHandler()
+#console.setLevel(logging.INFO)
+# set a format which is simpler for console use
+formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+# tell the handler to use this format
+console.setFormatter(formatter)
+# add the handler to the root logger
+logging.getLogger('').addHandler(console)
+
+
 import threading
 import Queue
 import numpy as np
@@ -11,16 +22,16 @@ import numpy as np
 procstack = 10
 
 def fill(outq):
-    logging.debug("Starting Fill thread")
+    logging.error("Starting Fill thread")
     for i in range(procstack):
         logging.debug("fill %4i started" % (i))
         outq.put(np.random.rand(1000,10000))
         logging.debug("fill %4i complete" % (i))
-    logging.debug("sending kill to que")
+    logging.error("sending kill to que")
     outq.put("END")
 
 def proc(inq, outq):
-    logging.debug("Starting Processing Thread")
+    logging.error("Starting Processing Thread")
     i = 0
     while True:
         data = inq.get()
@@ -32,16 +43,16 @@ def proc(inq, outq):
         outq.put(np.sin(np.log(data)))
         logging.debug("proc %4i complete" % (i))
         i+=1
-    logging.debug("Finished Processing Thread")
+    logging.error("Finished Processing Thread")
 
 def plot(inq):
-    logging.debug("Starting Plotting Thread")
+    logging.error("Starting Plotting Thread")
     for i in range(procstack):
         data = inq.get()
         logging.debug("plot %4i started" % (i))
         m = np.mean(data)
         logging.debug("plot %4i complete" % (i))
-    logging.debug("Finished Processing Thread")
+    logging.error("Finished Processing Thread")
 
 q1 = Queue.Queue()
 q2 = Queue.Queue()
