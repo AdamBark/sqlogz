@@ -1,6 +1,6 @@
 from logging import Handler
 
-class sqlogHandler(Handler):
+class SqlogHandler(Handler):
   """ comment """
 
   def emit(self, record):

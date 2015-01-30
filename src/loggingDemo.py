@@ -13,9 +13,9 @@ formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 # add the handler to the root logger
 
-import sqlogzLogHandler
+from sqlogzLogHandler import SqlogHandler
 logging.getLogger('').addHandler(console)
-logging.getLogger('').addHandler(sqlogzLogHandler())
+logging.getLogger('').addHandler(SqlogHandler())
 
 
 import threading
