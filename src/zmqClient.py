@@ -23,10 +23,11 @@ class ClientTask(object):
 
 if __name__ == "__main__":
     import serialize
+    import logging
     serializer = serialize.Serialize()
     client = ClientTask("localhost")
     client.connect()
     print "Connected"
-    #client.send_log(serializer.serialize("A string"))
-    client.send_log(serializer.serialize([1, 2, 3]))
+    record = logging.LogRecord("Some log", 1, "/tmp", 1, "Here is a log", None, None)
+    client.send_log(serializer.serialize(record))
     print "Sent log"
