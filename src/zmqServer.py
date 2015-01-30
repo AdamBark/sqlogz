@@ -12,3 +12,7 @@ class ServerTask(object):
     def run(self):
         """Start the server thread"""
         pass
+
+    def stop(self):
+        """Stop the server thread"""
+        pass
