@@ -1,7 +1,6 @@
-import logging
-import logging.handlers
+from logging import Handler
 
-class sqlogHandler(logging.handlers.NullHandler):
+class sqlogHandler(Handler):
   """ comment """
 
   def emit(self, record):
