@@ -24,7 +24,7 @@ class Main:
         return {'logfile': '/tmp/sqlogz.sqlite'}
 
     def run(self):
-        self.dbw = dbWriter.DBWriter(self._opts['file'])
+        self.dbw = dbWriter.DBWriter(self._opts['logfile'])
         self.server = zmqServer.ServerTask()
         self.server.register_callback(self.event)
         self.server.run()
