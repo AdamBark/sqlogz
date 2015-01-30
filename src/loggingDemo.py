@@ -15,7 +15,7 @@ console.setFormatter(formatter)
 
 from sqlogzLogHandler import SqlogHandler
 logging.getLogger('').addHandler(console)
-logging.getLogger('').addHandler(SqlogHandler())
+logging.getLogger('').addHandler(SqlogHandler('127.0.0.1', 12345))
 
 import threading
 import Queue

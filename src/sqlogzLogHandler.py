@@ -1,12 +1,14 @@
 from logging import Handler
 from serialize import Serialize
+from zmqClient import ClientTask
 
 class SqlogHandler(Handler):
   """ comment """
 
-  def __init__(self):
+  def __init__(self, server, port):
     Handler.__init__(self)
     self.serializer = Serialize()
+    self.zmq = ClientTask(server, port)
  
   def emit(self, record):
     serrecord = self.serializer.serialize(record.__dict__)

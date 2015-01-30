@@ -6,8 +6,9 @@ class Serialize(object):
     try:
       data = pickle.dumps(blob)
 
-#    except cPickle.UnpickleableError:
-#      data UnpickleableError
+    except pickle.UnpickleableError:
+      data = "unpickableerror"
+
     return data
 
   def deserialize(self, string):
